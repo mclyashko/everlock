@@ -11,10 +11,9 @@ import (
 
 func main() {
 	config := config.LoadConfig()
+	pool := db.LoadDbPool(&config.Db)
 
-	db.LoadDbPool(&config.Db)
-
-	web.ConfigureRouter()
+	web.ConfigureRouter(config, pool)
 
 	log.Printf("Starting Everlock on http://localhost:%s\n", config.Web.Port)
 	log.Fatal(http.ListenAndServe(":"+config.Web.Port, nil))

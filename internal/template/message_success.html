@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Everlock - Create Message</title>
+  <title>Message Created</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -59,22 +58,13 @@
 </head>
 <body>
   <div class="container">
-    <h1>Create a Message for Everlock</h1>
-    <form action="/submit" method="POST">
-      <label for="nickname">Your Nickname:</label><br>
-      <input type="text" id="nickname" name="nickname" required><br><br>
-      
-      <label for="message">Message:</label><br>
-      <textarea id="message" name="message" required></textarea><br><br>
-      
-      <label for="keyholders">Number of Key Holders:</label><br>
-      <input type="number" id="keyholders" name="keyholders" min="1" required><br><br>
-      
-      <label for="minKeyholders">Minimum Key Holders for Decryption:</label><br>
-      <input type="number" id="minKeyholders" name="minKeyholders" min="1" required><br><br>
-      
-      <button type="submit">Create Message</button>
-    </form>
+    <h1>Message Created Successfully</h1>
+    <p>Your message has been created with ID:</p>
+    <p>{{messageID}}</p>
+    <p>
+      <a href="/">Go back to the main page</a> or
+      <a href="/decrypt/{{messageID}}">Go to message decryption</a>
+    </p>
   </div>
 </body>
 </html>
