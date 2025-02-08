@@ -3,6 +3,7 @@ module github.com/mclyashko/everlock
 go 1.23.4
 
 require (
+	github.com/hoisie/mustache v0.0.0-20160804235033-6375acf62c69
 	github.com/jackc/pgx/v5 v5.7.2
 	github.com/joho/godotenv v1.5.1
 )

@@ -43,6 +43,6 @@ func LoadDbPool(c *config.Db) *pgxpool.Pool {
 		log.Fatalf("Unable to connect to database, error: %v", err)
 	}
 
-	log.Println("DbPool successfully created and Connected")
+	log.Println("DbPool successfully created and connected")
 	return pool
 }
