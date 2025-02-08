@@ -18,21 +18,23 @@ type Message struct {
 	CreatorName      string
 	EncryptedContent []byte
 	KeyHash          []byte
+	MinKeyholders    int
 	CreatedAt        time.Time
 	Keys             []messageKey
 }
 
-func NewMessage(nickname string, encryptedMessage []byte, keyHash [32]byte, keyholdersInt int, keyShares [][]byte) *Message {
+func NewMessage(nickname string, encryptedMessage []byte, keyHash [32]byte, keyholders int, minKeyholders int, keyShares [][]byte) *Message {
 	message := Message{
 		ID:               uuid.New(),
 		CreatorName:      nickname,
 		EncryptedContent: encryptedMessage,
 		KeyHash:          keyHash[:],
+		MinKeyholders:    minKeyholders,
 		CreatedAt:        time.Now(),
 	}
 
-	messageKeys := make([]messageKey, keyholdersInt)
-	for i := 0; i < keyholdersInt; i++ {
+	messageKeys := make([]messageKey, keyholders)
+	for i := 0; i < keyholders; i++ {
 		messageKeys[i] = messageKey{
 			ID:         uuid.New(),
 			MessageID:  message.ID,

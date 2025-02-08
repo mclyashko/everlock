@@ -88,7 +88,7 @@ func SubmitMessageHandler(p *pgxpool.Pool, w http.ResponseWriter, r *http.Reques
 		return
 	}
 
-	message := model.NewMessage(nickname, encryptedMessage, keyHash, keyholders, keyShares)
+	message := model.NewMessage(nickname, encryptedMessage, keyHash, keyholders, minKeyholders, keyShares)
 
 	if err = db.SaveNewMessage(p, message); err != nil {
 		logErrorAndRespond(w, fmt.Sprintf("transaction commit failed, error: %v", err), http.StatusInternalServerError)

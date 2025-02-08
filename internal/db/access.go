@@ -28,8 +28,8 @@ func SaveNewMessage(p *pgxpool.Pool, m *model.Message) error {
 
 	_, txErr = tx.Exec(
 		context.Background(),
-		`INSERT INTO message (id, creator_name, encrypted_content, key_hash) VALUES ($1, $2, $3, $4)`,
-		m.ID, m.CreatorName, m.EncryptedContent, m.KeyHash,
+		`INSERT INTO message (id, creator_name, encrypted_content, key_hash, min_keyholders) VALUES ($1, $2, $3, $4, $5)`,
+		m.ID, m.CreatorName, m.EncryptedContent, m.KeyHash, m.MinKeyholders,
 	)
 	if txErr != nil {
 		return fmt.Errorf("failed to save message %v, error: %v", m, txErr)

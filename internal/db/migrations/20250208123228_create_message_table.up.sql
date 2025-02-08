@@ -3,6 +3,7 @@ CREATE TABLE message (
     creator_name VARCHAR(16) NOT NULL,
     encrypted_content BYTEA NOT NULL,
     key_hash BYTEA NOT NULL,
+    min_keyholders INT NOT NULL,
     CHECK (octet_length(encrypted_content) <= 1024),
     CHECK (octet_length(key_hash) = 32)
 );
