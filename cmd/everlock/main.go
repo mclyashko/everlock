@@ -4,16 +4,20 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+
+	"github.com/mclyashko/everlock/internal/config"
+	"github.com/mclyashko/everlock/internal/db"
 )
 
-func homeHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "Welcome to Everlock!")
-}
-
 func main() {
-	http.HandleFunc("/", homeHandler)
+	config := config.LoadConfig()
 
-	port := "8080"
-	log.Printf("Starting Everlock on http://localhost:%s\n", port)
-	log.Fatal(http.ListenAndServe(":"+port, nil))
+	db.LoadDbPool(&config.Db)
+
+	http.HandleFunc("/", func(w http.ResponseWriter, _ *http.Request) {
+		fmt.Fprint(w, config)
+	})
+
+	log.Printf("Starting Everlock on http://localhost:%s\n", config.Web.Port)
+	log.Fatal(http.ListenAndServe(":"+config.Web.Port, nil))
 }
