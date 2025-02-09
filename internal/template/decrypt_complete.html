@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Message Created</title>
+  <title>Decryption Complete</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -54,23 +54,25 @@
     * {
       box-sizing: border-box;
     }
+    .message-box {
+      background: #eef;
+      padding: 1rem;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      word-wrap: break-word;
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Message Created Successfully</h1>
-    <p>Your message has been created with ID:</p>
-    <p>{{messageID}}</p>
-    <h2>Generated Keys</h2>
-    <ul>
-      {{#keys}}
-        <li>{{.}}</li>
-      {{/keys}}
-    </ul>
-    <p>
-      <a href="/">Go back to the main page</a> or
-      <a href="/decrypt/{{messageID}}">Go to message decryption</a>
-    </p>
+    <h1>Decryption Complete</h1>
+    <p><strong>MessageID: </strong>{{messageID}}</p>
+    <p><strong>Message Owner: </strong>{{nickname}}</p>
+    <h2>Decrypted Message</h2>
+    <div class="message-box">
+      <p>{{message}}</p>
+    </div>
+    <a href="/">Go back to the main page</a>
   </div>
 </body>
 </html>

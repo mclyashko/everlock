@@ -1,0 +1,1 @@
+CREATE INDEX idx_message_id ON message_key (message_id);

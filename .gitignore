@@ -22,7 +22,7 @@ go.work
 go.work.sum
 
 # env file
-.env
+# .env dont hide .env for demo project
 
 # General
 .DS_Store
