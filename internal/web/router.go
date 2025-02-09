@@ -15,4 +15,10 @@ func ConfigureRouter(_ *config.App, p *pgxpool.Pool) {
 	http.HandleFunc("/submit", func(w http.ResponseWriter, r *http.Request) {
 		logic.SubmitMessageHandler(p, w, r)
 	})
+	http.HandleFunc("/decrypt/", func(w http.ResponseWriter, r *http.Request) {
+		logic.DecryptMessageHandler(p, w, r)
+	})
+	http.HandleFunc("/add_key/", func(w http.ResponseWriter, r *http.Request) {
+		logic.AddKeyHandler(p, w, r)
+	})
 }

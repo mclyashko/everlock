@@ -4,6 +4,7 @@ CREATE TABLE message (
     encrypted_content BYTEA NOT NULL,
     key_hash BYTEA NOT NULL,
     min_keyholders INT NOT NULL,
+    created_at TIMESTAMPTZ NOT NULL,
     CHECK (octet_length(encrypted_content) <= 1024),
     CHECK (octet_length(key_hash) = 32)
 );

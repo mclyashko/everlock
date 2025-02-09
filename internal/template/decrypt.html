@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Message Created</title>
+  <title>Decrypt Message</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -58,19 +58,16 @@
 </head>
 <body>
   <div class="container">
-    <h1>Message Created Successfully</h1>
-    <p>Your message has been created with ID:</p>
-    <p>{{messageID}}</p>
-    <h2>Generated Keys</h2>
-    <ul>
-      {{#keys}}
-        <li>{{.}}</li>
-      {{/keys}}
-    </ul>
-    <p>
-      <a href="/">Go back to the main page</a> or
-      <a href="/decrypt/{{messageID}}">Go to message decryption</a>
-    </p>
+    <h1>Decrypt Message</h1>
+    <p>MessageID: {{messageID}}</p>
+    <p>Message Owner: {{nickname}}</p>
+    <p>Keys Entered: {{keysEntered}} / {{minKeyholders}}</p>
+    <p>Total keyholders: {{keyholders}}</p>
+    <form action="/add_key/{{messageID}}" method="POST">
+      <label for="key">Enter Your Key:</label><br>
+      <input type="text" id="key" name="key" required><br><br>
+      <button type="submit">Submit Key</button>
+    </form>
   </div>
 </body>
 </html>

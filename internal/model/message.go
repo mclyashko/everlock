@@ -6,7 +6,7 @@ import (
 	"github.com/google/uuid"
 )
 
-type messageKey struct {
+type MessageKey struct {
 	ID         uuid.UUID
 	MessageID  uuid.UUID
 	SecretPart []byte
@@ -17,28 +17,28 @@ type Message struct {
 	ID               uuid.UUID
 	CreatorName      string
 	EncryptedContent []byte
-	KeyHash          []byte
+	KeyHash          [32]byte
 	MinKeyholders    int
 	CreatedAt        time.Time
-	Keys             []messageKey
+	Keys             []MessageKey
 }
 
-func NewMessage(nickname string, encryptedMessage []byte, keyHash [32]byte, keyholders int, minKeyholders int, keyShares [][]byte) *Message {
+func NewMessage(nickname string, encryptedMessage []byte, keyHash [32]byte, keyholders int, minKeyholders int) *Message {
 	message := Message{
 		ID:               uuid.New(),
 		CreatorName:      nickname,
 		EncryptedContent: encryptedMessage,
-		KeyHash:          keyHash[:],
+		KeyHash:          keyHash,
 		MinKeyholders:    minKeyholders,
 		CreatedAt:        time.Now(),
 	}
 
-	messageKeys := make([]messageKey, keyholders)
+	messageKeys := make([]MessageKey, keyholders)
 	for i := 0; i < keyholders; i++ {
-		messageKeys[i] = messageKey{
+		messageKeys[i] = MessageKey{
 			ID:         uuid.New(),
 			MessageID:  message.ID,
-			SecretPart: keyShares[i],
+			SecretPart: nil,
 			UpdatedAt:  message.CreatedAt,
 		}
 	}
